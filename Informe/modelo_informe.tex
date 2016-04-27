@@ -56,20 +56,20 @@
 
 \section{Introducción}
 
-El trabajo práctico número uno consiste en el análisis de cuatro programas escritos en C que poseen ciertas vulnerabilidades por su forma en que están escritos para lograr "explotarlas" y lograr que el programa se comporte como nosotros querramos.
+El trabajo práctico número uno consiste en el análisis de cuatro programas escritos en C que poseen ciertas vulnerabilidades por su forma en que están escritos para lograr ``explotarlas'' y lograr que el programa se comporte como nosotros querramos.
 
-Básicamente lo que se busca es que cada programa imprima por consola el mensaje de "you win!" cuando durante el curso nomarl de ejecución del mismo no se llegaría a dicha impresión en la pantalla. 
+Básicamente lo que se busca es que cada programa imprima por consola el mensaje de ``you win!'' cuando durante el curso nomarl de ejecución del mismo no se llegaría a dicha impresión en la pantalla. 
 
-Si bien cada uno de los programas presenta características particulares que serán detlladas luego, todos ellos presenan problemas de seguridad debido a la funcion "gets" de C que no limita la cantidad de caracteres que van a ser leidos y guardados, es por ellos que si se ingresa una cantidad mayor a la que se debería, se van a sobreescribir datos en direcciones de memoria que, a priori, no deberían.  
+Si bien cada uno de los programas presenta características particulares que serán detlladas luego, todos ellos presenan problemas de seguridad debido a la funcion ``gets'' de C que no limita la cantidad de caracteres que van a ser leidos y guardados, es por ellos que si se ingresa una cantidad mayor a la que se debería, se van a sobreescribir datos en direcciones de memoria que, a priori, no deberían.  
 
 
 \section{Desarrollo}
 
-Para una mejor organización y comprensión del trabajo efectuado para llevar adelante el trabajo, se dvidira esta sección en 4 (una para cada programa de C a resolver).
+Para una mejor organización y comprensión del trabajo efectuado para llevar adelante el trabajo, se dividirá esta sección en 4 (una para cada programa de C a resolver).
 
 \subsection{stack1.c}
 
-El primer programa es el más simple de los cuatro debido a que para lograr que se imprima por consola el mensaje "you win!" debemos conseguir que la condición del if se cumpla: \textbf{if (cookie == 0x41424344)}
+El primer programa es el más simple de los cuatro debido a que para lograr que se imprima por consola el mensaje ``you win!'' debemos conseguir que la condición del if se cumpla: \textbf{if (cookie == 0x41424344)}
 
 Los caracteres involucrados son los siguientes:
 
@@ -92,7 +92,7 @@ Como ya se explico anteriormente, la variable cookie debe contener los caractere
 
 Por lo tanto el string a ingresar va a ser de la siguiente forma: ``xxxxxxx...xxxxDCBA''. Donde las `x' hacen referencia a los 80 caracteres. Un aspecto importante a tener en cuenta es el motivo por el cual se invirtió el orden de las últimas cuatro letras. Esto se debe a que nos encontramos insertando caracteres directamente en memoria por lo que 	debemos hacerlo acorde al endianess. Una forma práctica de darnos cuenta de cómo debemos ingresar los caracteres es haciendo la prueba con ``ABCD'' y viendo que el programa no se comporta como esperabamos. 
 
-Si añadimos un breakpoint justo en la linea anterior a la comprobación de la variable ``cookie", ejecutamos el programa hasta llegar a ese punto y luego vemos el contenido de la variable cookie, podemos notar que es: ``0x44434241". Por lo tanto inferimos que la forma correcta de ingresar los datos va a ser invirtiendo el orden de los mismos.
+Si añadimos un breakpoint justo en la linea anterior a la comprobación de la variable ``cookie'', ejecutamos el programa hasta llegar a ese punto y luego vemos el contenido de la variable cookie, podemos notar que es: ``0x44434241''. Por lo tanto inferimos que la forma correcta de ingresar los datos va a ser invirtiendo el orden de los mismos.
 
 \subsubsection{Corridas de prueba}
 
